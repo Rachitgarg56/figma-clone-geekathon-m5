@@ -1,25 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
+// "use client";
 
-function App() {
+import { RoomProvider } from "./liveblocks.config";
+import { Room } from "./Room";
+import { ClientSideSuspense } from "@liveblocks/react";
+
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <RoomProvider id="my-room" initialPresence={{cursor:{x:0,y:0}}}>
+      <ClientSideSuspense fallback={<div>Loading…</div>}>
+        {() => <Room />}
+      </ClientSideSuspense>
+    </RoomProvider>
   );
 }
-
-export default App;
