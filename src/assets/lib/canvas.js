@@ -1,16 +1,8 @@
 import { fabric } from "fabric";
 import { v4 as uuid4 } from "uuid";
 import {
-  CanvasMouseDown,
-  CanvasMouseMove,
-  CanvasMouseUp,
-  CanvasObjectModified,
-  CanvasObjectScaling,
-  CanvasPathCreated,
-  CanvasSelectionCreated,
-  RenderCanvas,
-} from "@/types/type";
-import { defaultNavElement } from "@/constants";
+  defaultNavElement
+} from "../constants/index";
 import { createSpecificShape } from "./shapes";
 
 export const initializeFabric = ({
@@ -102,6 +94,7 @@ export const handleCanvaseMouseMove = ({
         width: pointer.x - (shapeRef.current?.left || 0),
         height: pointer.y - (shapeRef.current?.top || 0),
       });
+      // break;
     default:
       break;
   }
@@ -189,40 +182,46 @@ export const handleCanvasSelectionCreated = ({
   setElementAttributes,
 }) => {
   if (isEditingRef.current) return;
-  if (!options?.selected) return;
-  const selectedElement = options?.selected[0];
+  if (!options || !options.selected) return;
+
+  const selectedElement = options.selected[0];
   if (selectedElement && options.selected.length === 1) {
-    const scaledWidth = selectedElement?.scaleX
-      ? selectedElement?.width! * selectedElement?.scaleX
-      : selectedElement?.width;
-    const scaledHeight = selectedElement?.scaleY
-      ? selectedElement?.height! * selectedElement?.scaleY
-      : selectedElement?.height;
-    setElementAttributes({
-      width: scaledWidth?.toFixed(0).toString() || "",
-      height: scaledHeight?.toFixed(0).toString() || "",
-      fill: selectedElement?.fill?.toString() || "",
-      stroke: selectedElement?.stroke || "",
-    });
+    const scaledWidth = selectedElement.scaleX
+      ? selectedElement.width * selectedElement.scaleX
+      : selectedElement.width;
+    const scaledHeight = selectedElement.scaleY
+      ? selectedElement.height * selectedElement.scaleY
+      : selectedElement.height;
+    
+    setElementAttributes((prev) => ({
+      ...prev,
+      width: scaledWidth ? scaledWidth.toFixed(0).toString() : "",
+      height: scaledHeight ? scaledHeight.toFixed(0).toString() : "",
+      fill: selectedElement.fill ? selectedElement.fill.toString() : "",
+      stroke: selectedElement.stroke || "",
+    }));
   }
 };
+
 
 export const handleCanvasObjectScaling = ({
   options,
   setElementAttributes,
 }) => {
   const selectedElement = options.target;
-  const scaledWidth = selectedElement?.scaleX
-    ? selectedElement?.width! * selectedElement?.scaleX
-    : selectedElement?.width;
-  const scaledHeight = selectedElement?.scaleY
-    ? selectedElement?.height! * selectedElement?.scaleY
-    : selectedElement?.height;
-  setElementAttributes((prev) => ({
-    ...prev,
-    width: scaledWidth?.toFixed(0).toString() || "",
-    height: scaledHeight?.toFixed(0).toString() || "",
-  }));
+  if (selectedElement) {
+    const scaledWidth = selectedElement.scaleX
+      ? selectedElement.width * selectedElement.scaleX
+      : selectedElement.width;
+    const scaledHeight = selectedElement.scaleY
+      ? selectedElement.height * selectedElement.scaleY
+      : selectedElement.height;
+    setElementAttributes((prev) => ({
+      ...prev,
+      width: scaledWidth ? scaledWidth.toFixed(0).toString() : "",
+      height: scaledHeight ? scaledHeight.toFixed(0).toString() : "",
+    }));
+  }
 };
 
 export const renderCanvas = ({

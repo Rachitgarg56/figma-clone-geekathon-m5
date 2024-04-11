@@ -7,7 +7,7 @@ import ReactionSelector from './reaction/ReactionButton'
 import FlyingReaction from './reaction/FlyingReaction'
 import useInterval from '../assets/hooks/useInterval'
 
-const Live = () => {
+const Live = ({ canvasRef }) => {
 
   const others = useOthers()
   const [ { cursor }, updateMyPresence] = useMyPresence()
@@ -142,7 +142,8 @@ const Live = () => {
         onPointerUp={handlePointerUp}
         className="h-[100vh] text-center w-full flex items-center justify-center"
     >
-      <h1 className="text-white text-2xl">LiveBlocks Figma Clone</h1>
+      
+      <canvas style={{border:'1px solid white'}} ref={canvasRef} />
 
       {reaction.map((r) => (
         <FlyingReaction

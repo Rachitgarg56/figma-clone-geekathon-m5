@@ -1,14 +1,8 @@
 import { fabric } from "fabric";
 import { v4 as uuidv4 } from "uuid";
 
-import {
-  CustomFabricObject,
-  ElementDirection,
-  ImageUpload,
-  ModifyShape,
-} from "@/types/type";
 
-export const createRectangle = (pointer: PointerEvent) => {
+export const createRectangle = (pointer) => {
   const rect = new fabric.Rect({
     left: pointer.x,
     top: pointer.y,
@@ -16,12 +10,12 @@ export const createRectangle = (pointer: PointerEvent) => {
     height: 100,
     fill: "#aabbcc",
     objectId: uuidv4(),
-  } as CustomFabricObject<fabric.Rect>);
+  });
 
   return rect;
 };
 
-export const createTriangle = (pointer: PointerEvent) => {
+export const createTriangle = (pointer) => {
   return new fabric.Triangle({
     left: pointer.x,
     top: pointer.y,
@@ -29,31 +23,31 @@ export const createTriangle = (pointer: PointerEvent) => {
     height: 100,
     fill: "#aabbcc",
     objectId: uuidv4(),
-  } as CustomFabricObject<fabric.Triangle>);
+  });
 };
 
-export const createCircle = (pointer: PointerEvent) => {
+export const createCircle = (pointer) => {
   return new fabric.Circle({
     left: pointer.x,
     top: pointer.y,
     radius: 100,
     fill: "#aabbcc",
     objectId: uuidv4(),
-  } as any);
+  });
 };
 
-export const createLine = (pointer: PointerEvent) => {
+export const createLine = (pointer) => {
   return new fabric.Line(
     [pointer.x, pointer.y, pointer.x + 100, pointer.y + 100],
     {
       stroke: "#aabbcc",
       strokeWidth: 2,
       objectId: uuidv4(),
-    } as CustomFabricObject<fabric.Line>
+    }
   );
 };
 
-export const createText = (pointer: PointerEvent, text: string) => {
+export const createText = (pointer, text) => {
   return new fabric.IText(text, {
     left: pointer.x,
     top: pointer.y,
@@ -62,12 +56,12 @@ export const createText = (pointer: PointerEvent, text: string) => {
     fontSize: 36,
     fontWeight: "400",
     objectId: uuidv4()
-  } as fabric.ITextOptions);
+  });
 };
 
 export const createSpecificShape = (
-  shapeType: string,
-  pointer: PointerEvent
+  shapeType,
+  pointer
 ) => {
   switch (shapeType) {
     case "rectangle":
@@ -95,11 +89,11 @@ export const handleImageUpload = ({
   canvas,
   shapeRef,
   syncShapeInStorage,
-}: ImageUpload) => {
+}) => {
   const reader = new FileReader();
 
   reader.onload = () => {
-    fabric.Image.fromURL(reader.result as string, (img) => {
+    fabric.Image.fromURL(reader.result, (img) => {
       img.scaleToWidth(200);
       img.scaleToHeight(200);
 
@@ -119,9 +113,9 @@ export const handleImageUpload = ({
 };
 
 export const createShape = (
-  canvas: fabric.Canvas,
-  pointer: PointerEvent,
-  shapeType: string
+  canvas,
+  pointer,
+  shapeType
 ) => {
   if (shapeType === "freeform") {
     canvas.isDrawingMode = true;
@@ -137,7 +131,7 @@ export const modifyShape = ({
   value,
   activeObjectRef,
   syncShapeInStorage,
-}: ModifyShape) => {
+}) => {
   const selectedElement = canvas.getActiveObject();
 
   if (!selectedElement || selectedElement?.type === "activeSelection") return;
@@ -150,8 +144,8 @@ export const modifyShape = ({
     selectedElement.set("scaleY", 1);
     selectedElement.set("height", value);
   } else {
-    if (selectedElement[property as keyof object] === value) return;
-    selectedElement.set(property as keyof object, value);
+    if (selectedElement[property] === value) return;
+    selectedElement.set(property, value);
   }
 
   // set selectedElement to activeObjectRef
@@ -164,7 +158,7 @@ export const bringElement = ({
   canvas,
   direction,
   syncShapeInStorage,
-}: ElementDirection) => {
+}) => {
   if (!canvas) return;
 
   // get the selected element. If there is no selected element or there are more than one selected element, return
