@@ -1,4 +1,9 @@
-import React from "react";
+"use client";
+
+import Image from "next/image";
+
+import { ShapesMenuProps } from "@/types/type";
+
 import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from "./ui/dropdown-menu";
 import { Button } from "./ui/button";
 
@@ -8,23 +13,18 @@ const ShapesMenu = ({
   handleActiveElement,
   handleImageUpload,
   imageInputRef,
-}) => {
-  if (!item || !item.value || !activeElement) {
-    return null;
-  }
-
-  const isDropdownElem = item.value.some((elem) => elem && elem.value === activeElement.value);
-
-  // const isDropdownElem = item?.value?.some((elem) => elem?.value === activeElement?.value);
+}: ShapesMenuProps) => {
+  const isDropdownElem = item.value.some((elem) => elem?.value === activeElement.value);
 
   return (
     <>
       <DropdownMenu>
         <DropdownMenuTrigger asChild className="no-ring">
           <Button className="relative h-5 w-5 object-contain" onClick={() => handleActiveElement(item)}>
-            <img
+            <Image
               src={isDropdownElem ? activeElement.icon : item.icon}
               alt={item.name}
+              fill
               className={isDropdownElem ? "invert" : ""}
             />
           </Button>
@@ -42,9 +42,9 @@ const ShapesMenu = ({
               }`}
             >
               <div className="group flex items-center gap-2">
-                <img
-                  src={elem?.icon}
-                  alt={elem?.name}
+                <Image
+                  src={elem?.icon as string}
+                  alt={elem?.name as string}
                   width={20}
                   height={20}
                   className={activeElement.value === elem?.value ? "invert" : ""}

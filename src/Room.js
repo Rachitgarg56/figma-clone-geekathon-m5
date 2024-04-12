@@ -13,7 +13,6 @@ export function Room() {
   // const others = useOthers();
   // const userCount = others.length;
   
-  {/* <Navbar/> */}
 
   const canvasRef = useRef(null);
   const fabricRef = useRef(null);

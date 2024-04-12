@@ -1,5 +1,5 @@
 import { useOthers, useSelf } from "../../liveblocks.config";
-import { Avatar } from "./avatar";
+import { Avatar } from "./Avatar";
 import styles from './index.module.css';
 import generateRandomName from '../../assets/lib/utils'
 

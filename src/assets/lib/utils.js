@@ -1,5 +1,17 @@
 import jsPDF from "jspdf";
 import { twMerge } from "tailwind-merge";
+import clsx from "clsx";
+
+
+import selectIcon from '../public/assets/select.svg'
+import rectangleIcon from '../public/assets/rectangle.svg'
+import textIcon from '../public/assets/text.svg'
+import deleteIcon from '../public/assets/delete.svg'
+import resetIcon from '../public/assets/reset.svg'
+import commentsIcon from '../public/assets/comments.svg'
+const navIcons = [selectIcon,rectangleIcon,textIcon,deleteIcon,resetIcon,commentsIcon,]
+
+export default navIcons
 
 const adjectives = [
   "Happy",
