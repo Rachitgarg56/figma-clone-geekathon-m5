@@ -135,7 +135,7 @@ const Live = ({ canvasRef }) => {
   }, [])
 
   return (
-    <div 
+    <div
         onPointerMove={handlePointerMove}   
         onPointerLeave={handlePointerLeave}
         onPointerDown={handlePointerDown}
@@ -143,7 +143,7 @@ const Live = ({ canvasRef }) => {
         className="h-[100vh] text-center w-full flex items-center justify-center"
     >
       
-      <canvas style={{border:'1px solid white'}} ref={canvasRef} />
+      <canvas ref={canvasRef} />
 
       {reaction.map((r) => (
         <FlyingReaction

@@ -15,12 +15,12 @@ const Navbar = () => {
 
       <ul className='flex flex-row items-center gap-8'>
 
-        <li className='w-6 h-6' ><img alt='' className='w-full h-full' src={selectIcon} /></li>
-        <li className='w-6 h-6' ><img alt='' className='w-full h-full' src={shapeElementsIcon} /></li>
-        <li className='w-6 h-6' ><img alt='' className='w-full h-full' src={textIcon} /></li>
-        <li className='w-6 h-6' ><img alt='' className='w-full h-full' src={deleteIcon} /></li>
-        <li className='w-6 h-6' ><img alt='' className='w-full h-full' src={resetIcon} /></li>
-        <li className='w-6 h-6' ><img alt='' className='w-full h-full' src={commentsIcon} /></li>
+        <li className='w-6 h-6' ><img alt='' className='w-full h-full cursor-pointer' src={selectIcon} /></li>
+        <li className='w-6 h-6' ><img alt='' className='w-full h-full cursor-pointer' src={shapeElementsIcon} /></li>
+        <li className='w-6 h-6' ><img alt='' className='w-full h-full cursor-pointer' src={textIcon} /></li>
+        <li className='w-6 h-6' ><img alt='' className='w-full h-full cursor-pointer' src={deleteIcon} /></li>
+        <li className='w-6 h-6' ><img alt='' className='w-full h-full cursor-pointer' src={resetIcon} /></li>
+        <li className='w-6 h-6' ><img alt='' className='w-full h-full cursor-pointer' src={commentsIcon} /></li>
 
       </ul>
 

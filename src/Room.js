@@ -6,20 +6,13 @@ import Live from "./components/Live";
 import LeftSidebar from "./components/users/LeftSidebar";
 import RightSidebar from "./components/users/RightSidebar";
 import Navbar from './components/Navbar';
-// import Navbar from "./components/Navbar";
-// import { useOthers } from "./liveblocks.config";
 
 export function Room() {
-  // const others = useOthers();
-  // const userCount = others.length;
-  
-  {/* <Navbar/> */}
-
   const canvasRef = useRef(null);
   const fabricRef = useRef(null);
   const isDrawing = useRef(false);
   const shapeRef = useRef(null);
-  const selectedShapeRef = useRef('rectangle');
+  const selectedShapeRef = useRef('circle');
 
   useEffect(() => {
     const canvas = initializeFabric({canvasRef, fabricRef});

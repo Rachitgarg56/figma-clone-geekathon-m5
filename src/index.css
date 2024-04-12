@@ -21,3 +21,21 @@ code {
   margin: 0;
   box-sizing: border-box;
 }
+
+/* custom */
+
+/* canvas-css */
+.canvas-container {
+  width: 1000px !important;
+  height: 500px !important;
+}
+
+.lower-canvas, .upper-canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+
+/* .lower-canvas {
+
+} */
