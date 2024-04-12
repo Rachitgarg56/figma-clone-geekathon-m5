@@ -1,5 +1,6 @@
 import jsPDF from "jspdf";
 import { twMerge } from "tailwind-merge";
+import clsx from "clsx";
 
 const adjectives = [
   "Happy",
